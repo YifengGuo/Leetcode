@@ -19,7 +19,10 @@ class TreeNode {
 		this.val = val;
 	}
 }
-
+/*
+ * time = O(n)
+ * space = O(height)
+ */
 public class MaxDepthOfBinaryTree {
 	public int maxDepth(TreeNode root) {
 		if (root == null) {
