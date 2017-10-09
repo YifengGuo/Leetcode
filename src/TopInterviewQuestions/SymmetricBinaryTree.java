@@ -55,6 +55,8 @@ public class SymmetricBinaryTree {
 			return true;
 		}
 		Queue<TreeNode> queue = new LinkedList<>();
+		// add them directly for single root TreeNode is also symmetric
+		// child node of root is null or not cannot guarantee isSysmmetrc
 		queue.offer(root.left);
 		queue.offer(root.right);
 		while (!queue.isEmpty()) {
