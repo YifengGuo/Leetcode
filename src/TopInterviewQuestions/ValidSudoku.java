@@ -56,14 +56,16 @@ public class ValidSudoku {
 			Set<Character> col = new HashSet<>();
 			Set<Character> cube = new HashSet<>();
 			for (int j = 0; j < board[0].length; j++) {
-				if (board[i][j] != '.' && !row.add(board[i][j])) {
+				if (board[i][j] != '.' && !row.add(board[i][j])) { // row: fixed row index and move column
 					return false;
 				}
-				if (board[j][i] != '.' && !col.add(board[j][i])) {
+				if (board[j][i] != '.' && !col.add(board[j][i])) { // column: fixed column index and move row index 
 					return false;
 				}
-				int rowIdx = 3 * (i / 3);
-				int colIdx = 3 * (i % 3);
+				// use j to traverse inside a block and use i to traverse different blocks
+				int rowIdx = 3 * (i / 3); // To move vertically to next block Multiply by 3 so that the next block is after 3 rows.
+				int colIdx = 3 * (i % 3); // To move horizontally to next block Multiply by 3 so that the next block is after 3 columns.
+				// use j / 3 to traverse vertically and use j % 3 to traverse horizontally in certain block
 				if (board[rowIdx + j / 3][colIdx + j % 3] != '.' && !cube.add(board[rowIdx + j / 3][colIdx + j % 3])) {
 					return false;
 				}
