@@ -1,0 +1,37 @@
+package TopInterviewQuestions;
+
+/**
+ * 
+ * @author yifengguo 
+ *         Reverse bits of a given 32 bits unsigned integer.
+ * 
+ *         For example, given input 43261596 (represented in binary as
+ *         00000010100101000001111010011100), return 964176192 (represented in
+ *         binary as 00111001011110000010100101000000).
+ * 
+ *         Follow up: If this function is called many times, how would you
+ *         optimize it?
+ * 
+ *         Related problem: Reverse Integer
+ * 
+ */
+/*
+ * similar to hamming weight
+ * 10011  -> 11001
+ *  1th: res = 0 << 1 == 0, res + (n & 1) = 1, n >> 1 = 01001
+ *  2th: res = 1 << 1 == 10, res + (n & 1) = 11, n >> 1 = 00100
+ *  ...
+ *  
+ */
+public class ReverseBits {
+	// you need treat n as an unsigned value
+	public int reverseBits(int n) {
+		int res = 0;
+		for (int i = 0; i < 32; i++) {
+			res = res << 1;
+			res = res + (n & 1);
+			n = n >> 1;
+		}
+		return res;
+	}
+}
