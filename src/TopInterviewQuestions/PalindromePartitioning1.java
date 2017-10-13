@@ -50,19 +50,5 @@ public class PalindromePartitioning1 {
 			}
 			System.out.println();
 		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }
