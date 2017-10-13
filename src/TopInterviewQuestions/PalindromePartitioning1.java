@@ -30,12 +30,14 @@ public class PalindromePartitioning1 {
 			res.add(new ArrayList<String>(cur));
 			return;
 		}
+		// each time we first consider single letter as palindrome
+		// and grow it from start by backtracking
 		for (int i = start; i < s.length(); i++) {
 			if (isP[start][i]) {
 				cur.add(s.substring(start, i + 1)); // [start, i] is palindrome, add it to cur
 				helper(res, cur, isP, i + 1, s); // move start to next position
 // System.out.println(cur.size());
-				cur.remove(cur.size() - 1);  // backtracking
+				cur.remove(cur.size() - 1);  // backtrack to current start, and then by for loop to grow its size
 // System.out.println(cur.size());
 			}
 		}
