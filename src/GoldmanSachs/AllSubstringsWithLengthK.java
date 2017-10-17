@@ -21,8 +21,8 @@ public class AllSubstringsWithLengthK {
 		}
 		Set<String> set = new HashSet<>();
 		for (int i = 0; i < s.length() - 1; i++) {
-			if (!set.contains(s.substring(i, i + 2))) {
-				set.add(s.substring(i, i + 2)); // s.substring() cost O(n) time after java 7
+			if (!set.contains(s.substring(i, i + k))) {
+				set.add(s.substring(i, i + k)); // s.substring() cost O(n) time after java 7
 												// before the behaviour of created new object refers to original one O(1)
 			}
 		}
