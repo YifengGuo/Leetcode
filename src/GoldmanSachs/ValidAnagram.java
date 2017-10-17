@@ -1,5 +1,9 @@
 package GoldmanSachs;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  * 
  * @author guoyifeng 
@@ -22,10 +26,10 @@ package GoldmanSachs;
  */
 public class ValidAnagram {
 	public boolean isAnagram(String s, String t) {
-		if (s == null || t == null) {
+		if (s == null || t == null || s.length() != t.length()) {
 			return false;
 		}
-		if (s.length() == 0 && s.length() == 0) {
+		if (s.length() == 0 && t.length() == 0) {
 			return true;
 		}
 		int[] table = new int[26];
@@ -37,6 +41,42 @@ public class ValidAnagram {
 		}
 		for (int i = 0; i < table.length; i++) {
 			if (table[i] != 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	/*
+	 * if consider s and t contains unicode character
+	 * we can use hash_map to record each character 
+	 * occurrence
+	 * time = O(n)
+	 * space = O(n)
+	 */
+	public boolean isAnagramWithUnicode(String s, String t) {
+		if (s == null || t == null || s.length() != t.length()) {
+			return false;
+		}
+		if (s.length() == 0 && t.length() == 0) {
+			return true;
+		}
+		Map<Character, Integer> map = new HashMap<>();
+		for (int i = 0; i < s.length(); i++) {
+			if (!map.containsKey(s.charAt(i))) {
+				map.put(s.charAt(i), 1);
+			} else {
+				map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
+			}
+		}
+		for	(int i = 0; i < t.length(); i++) {
+			if (!map.containsKey(t.charAt(i))) {
+				map.put(t.charAt(i), 1);
+			} else {
+				map.put(t.charAt(i), map.get(t.charAt(i)) - 1);
+			}
+		}
+		for (Map.Entry<Character, Integer> e : map.entrySet()) {
+			if (e.getValue() != 0) {
 				return false;
 			}
 		}
