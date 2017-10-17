@@ -15,6 +15,10 @@ package GoldmanSachs;
 	How about multiple spaces between two words?
 	Reduce them to a single space in the reversed string.
  */
+/*
+ * space = O(n)
+ * time = O(n)
+ */
 public class ReverseWordsInASentence1 {
 	public String reverseWords(String s) { 
 		if (s == null || s.length() == 0) {
