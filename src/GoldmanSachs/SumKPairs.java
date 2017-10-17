@@ -1,7 +1,16 @@
 package GoldmanSachs;
 
 import java.util.Arrays;
-
+/**
+ * 
+ * @author guoyifeng
+ *	find number of pairs whose sum is k in the given array
+ */
+/*
+ * basic idea: similar to two sum
+ * time = O(nlogn) for sort process
+ * space = O(1)
+ */
 public class SumKPairs {
 	public int pairs(int[] nums, int k) {
 		if (nums == null || nums.length == 0) {
