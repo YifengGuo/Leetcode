@@ -4,6 +4,10 @@ package GoldmanSachs;
  * @author guoyifeng
  	input: aaabbbccccc output: a3b3c5
  */
+/*
+ * time = O(n)
+ * space = O(1)
+ */
 public class CompressString {
 	public String compress(String s) {
 		StringBuilder sb = new StringBuilder();
