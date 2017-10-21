@@ -54,6 +54,7 @@ public class KthSmallestElementInASortedMatrix {
         minHeap.offer(start);
 		// run best first search for each row and column is sorted.
         // go down and right we can always get a larger element
+        // remove first k - 1 elements in ascending order
 		for (int i = 0; i < k - 1; i++) {
 			Entry cur = minHeap.poll();
 			// go down
@@ -68,5 +69,10 @@ public class KthSmallestElementInASortedMatrix {
 			}
 		}
 		return minHeap.peek().value;
+	}
+	public static void main(String[] args) {
+		int[][] matrix = new int[][]{{1,1,1},{1,1,1},{1,1,2}};
+		int k = 8;
+		System.out.println(new KthSmallestElementInASortedMatrix().kthSmallest(matrix, k));
 	}
 }
