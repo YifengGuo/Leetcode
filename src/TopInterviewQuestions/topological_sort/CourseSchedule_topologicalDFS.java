@@ -39,6 +39,9 @@ import java.util.List;
  */
 /*
  * basic idea: topological by dfs
+ * 			   find all the edges to adjacent nodes of each node via 2d array
+ *             run dfs on each node and determine if there is any cycle exsited
+ *             among edges
  * time = O(V + E)
  * space = O(V + E)
  */
