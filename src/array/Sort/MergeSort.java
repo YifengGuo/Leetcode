@@ -39,9 +39,9 @@ public class MergeSort {
 				return;
 			}
 			int mid = lo + (hi - lo) / 2;
-			mergeSort(array, aux, lo, mid);
-			mergeSort(array, aux, mid + 1, hi);
-			merge(array, aux, lo, mid, hi);
+			mergeSort(array, aux, lo, mid); // sort [lo, mid]
+			mergeSort(array, aux, mid + 1, hi); // sort [mid + 1, hi]
+			merge(array, aux, lo, mid, hi); // merge two parts
 		}
 
 		private void merge(int[] array, int[] aux, int lo, int mid, int hi) {
@@ -50,6 +50,9 @@ public class MergeSort {
 			for (int i = lo; i <= hi; i++) {
 				aux[i] = array[i];
 			}
+			// two while loops guarantee array from lo to hi is sorted
+			// so each time merge process, two halves subarray [lo, mid]
+			// and [mid + 1, hi] are already sorted
 			while (left <= mid && right <= hi) {
 				if (aux[left] <= aux[right]) {
 					array[lo++] = aux[left++];
@@ -57,6 +60,8 @@ public class MergeSort {
 					array[lo++] = aux[right++];
 				}
 			}
+			// right part has some elements left,
+			// they are already at the right place
 			while (left <= mid) {
 				array[lo++] = aux[left++];
 			}
