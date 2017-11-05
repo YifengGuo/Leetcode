@@ -60,6 +60,6 @@ public class MergeSort {
 			while (left <= mid) {
 				array[lo++] = aux[left++];
 			}
-		}
+		} 
 	}
 }
