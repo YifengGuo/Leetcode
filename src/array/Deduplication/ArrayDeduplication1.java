@@ -1,4 +1,4 @@
-package array.deduplication;
+package array.Deduplication;
 
 import java.util.Arrays;
 
