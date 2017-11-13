@@ -28,7 +28,7 @@ import java.util.Arrays;
  */
 public class ArrayDeduplication3 {
 	public int[] dedup(int[] array) {
-		if (array == null || array.length <= 2) {
+		if (array == null || array.length == 0) {
 			return array;
 		}
 		int slow = 0;
