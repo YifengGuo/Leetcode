@@ -1,0 +1,208 @@
+Data Structure:
+	Array:
+		sort: (nlogn) quick sort, merge sort
+		if(sorted): search: bf O(n) -> binary search O(logn)
+			O(1) random access (get by index)
+			limitation of array: the size is fixed when initialization
+			
+	LinkedList:
+		singly 
+		doubly (DLL)
+		O(n) random access (get by iterate one by one)
+		O(1) append at head/tail
+		
+	Queue(FIFO)
+		O(1) offer, poll, peek
+		could implemented by circular array
+		
+	Stack(LIFO)
+		O(1) push, pop, peek
+		
+	Deque
+		O(1) insert/remove/peek at both end
+		
+	Heap
+		elements are ordered by their values
+		O(1) peek (largest or smallest)
+		O(logn) offer, poll (percolate down or percolate up)
+		
+	Binary Tree
+		O(n) search
+		
+	Balanced Binary Search Tree(BST)
+		elements are ordered
+		O(logn) search, insert and remove
+		O(logn) smallest/largest
+		O(logn) nextLarger(), nextSmaller()
+		
+Collection: Define what operations should be provided for any class that is a "Collection".
+            Any class that is a kind of collection should implement the defined methods
+            int size()
+            boolean isEmpty()
+            boolean add(E element)
+            boolean contains(E element)
+            boolean remove(E element)
+            void clear()
+            
+List: Define a group of data structures, that can contain duplicate elements, maintain the order
+      of insertion of the elements and provide the capability of random access by using index
+      E get(int index)
+      E remove(int index)
+      E set(int index, E element)
+      
+      Object[] toArray(T[] a) // return an array containing all of the elements in this
+                              // list in proper sequence
+        
+      	List<String> list = new LinkedList<>();
+      	list.add("a");
+      	list.add("b");
+      	list.add("c");
+      	// tell the type information when forming the array
+      	String[] array = list.toArray(new String[list.size()]);
+	  
+   	  ArrayList: A concrete implementation of List by resizable-array
+   	  	It is a list 
+   	  	It is a collection
+   	  	It implements all the methods specified in List and Collection
+   	  	
+   	  	
+   	  Queue: Define a group of data structures, that is designed to:
+   	  	1) hold and buffer elements before processing
+   	  	2) provide a way of choosing which element buffered is the next one to
+   	  	   be processed
+   	  	3) there are usually two ends of the Queue, and offer() always at tail,
+   	  	   poll() always at head
+
+		For queue:   	  	
+   	  	two groups of operation APIs (if the operation fails)
+   	  	Throws exception                              Return special value
+   	  	    boolean add(e)                              boolean offer(e)
+   	  	    E remove()                                  E poll()
+   	  	    E element()                                 E peek()     
+   	  	    
+	  Deque: Defines a subtype of queue, where it is double ended. (FIFO and LIFO are both provided)
+	  		boolean offerFirst()
+	  		boolean offerLast()
+	  		E pollFirst()
+	  		E pollLast()
+	  		E peekFirst()
+	  		E peekLast()
+	  		
+	  LinkedList: A List implements that backed by a doubly linked list. It also can be used as 
+	              queue/deque/stack
+	        It is a List
+	        It is a Queue
+	        It is a Deque
+	        It is a Collection
+	  		It implements all the methods specified in Collection, List, Queue, Deque
+	  		
+	  PriorityQueue: Defines a special implementation of queue, where it is using priority
+	                 to determine which element is the next to process (using priority)
+	        It implements all the methods specified in Collection, Queue
+	        
+	  Set: Defines a group of data structure that contains no duplicate elements
+	      HashSet: A concrete implementation of Set using hashtable
+	      	It is a Set
+	      	It is a Collection
+	      	It implements all the methods specified in Set and Collection
+	  
+		  SortedSet: Defines a subtype of Set that contains no duplicate elements and the 
+		             elements are sorted. It is a subtype of Set      
+		            E first() // smallest one
+		            E last() // largest one
+		            SortedSet<E> headSet(E toElement) // all the elements smaller than toElement
+		            SortedSet<E> tailSet(E fromElement) // all the elements larger than from fromElement   
+		            
+		            
+		  	TreeSet: A concrete implementation of SortedSet using red-black tree
+		  		It is a SortedSet
+		  		It is a Set
+		  		It is a Collection
+		  		
+	  Similar to Map, HashMap, SortedMap and TreeMap  
+	  
+	  
+Arrays and Collections:
+    1. They are the place-holders of a set of utility methods for manipulating arrays and collections.
+    2. They are NOT the class for array and Collection
+    3. All the methods in Arrays/Collections are static methods, so there is no need to create a 
+       Arrays/Collections instance to utilize them
+       
+    Arrays:
+    	Arrays,sort(int[] array) // quickSort
+    	Arrays.sort(Integer[] array) // for object[], apply optimized mergeSort
+    	
+    	// apply specific comparator(order) for sorting the given array
+    	Arrays.sort(T[], Comparator<T> comparator)
+    	
+    	Arrays.asList(T....a) // convert an array to a List
+    		Return a fixed size list backed by the specified array. (Changes to the returned list
+    		write through to the array)
+    		
+    		List<Integer> list = Arrays.asList(1, 2, 3);
+    		list.set(0, 4); // list is (4, 2, 3)
+    		list.add(5); // throw UnsupportedOperationException -fixed-size
+    		
+    	Arrays.copyOf(original, int newLength)
+    		int[] array = new int[] {1, 2, 3};
+    		int[] copy = Arrays.copyOf(array, 1);
+    		// copy = {1};
+    		copy = Arrays.copyOf(array, 5);
+    		// copy = {1, 2, 3, 0, 0}; padding default value at the end
+    		
+    	Arrays.copyOfRange(original, int from, int to) // from is inclusive and to is exclusive
+    	
+    	Arrays.fill(original, value) // fill the array with given value
+    	
+    	Arrays.toString(int[] array), Arrays.deepToString(int[][] matrix)
+    		int[] array = new int[]{1, 2, 3};
+    		String s Arrays.toString(array);
+    		// s = "[1, 2, 3]"
+    		
+    		int[][] matrix = new int[]{{1, 2},{1, 2}};
+    		String t = Arrays.deepToString(matrix);
+    		// t = "[[1, 2],[1, 2]]"
+    		
+    	Arrays.binarySearch(original, target)
+    		int[] array = new int[]{3, 1, 2};
+    		Arrays.sort(array);
+    		// the array must be guaranteed to be sorted before using binarySearch
+    		int i = Arrays.binarySearch(array, 2);
+    		// i = 1
+    		
+    		
+Collections:
+	Collections.sort(List<T> list);
+	Collection.sort(List<T> list, Comparator<T> comparator)
+	
+	Collections.binarySearch(List<T> list)
+	
+	Collections.swap(List<T> list, int i, int j)
+	
+	Collections.fill(List<T> list, T value)
+	
+	Collections.reverse(List<T> list)
+	
+	Collections.reverseOrder(): reverse the natural order defined by a class
+	                            implementing Comparable interface
+		// example using Collections.reverseOrder()
+		PriorityQueue<Integer> maxHeap = new PriorityQueue<>(11, Collections.reverseOrder());
+		
+	Collections.frequency(Collection<T> c, object o)
+	// return the number of elements in the specified collection equal to the specified object
+	
+	Collections.shuffle(List<T> list)
+	// randomly permute the specified list using a default source of randomness
+	
+	Collections.synchronizedMap(Map<K, V> map)
+	// return a synchronized (thread-safe) collection backed by the specified map
+	
+	Collections.synchronizedSet(Set<T> s)
+	// return a synchronized (thread-safe) collection backed by the specified set
+	
+	Collections.synchronizedSortedMap(SortedMap<K, V> m)
+	Collections.synchronizedSortedSet(SortedMap<K, V> m)
+	
+	
+	
+	
