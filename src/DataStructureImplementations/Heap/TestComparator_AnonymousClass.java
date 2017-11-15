@@ -2,6 +2,14 @@ package DataStructureImplementations.Heap;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
+/**
+ * 
+ * @author guoyifeng
+ * If a class which does not implement Comparable<> interface and need to be 
+ * compared, then we must supply a Comparator either by a explicit auxiliary
+ * comparator class or anonymous class in collection which we want to sort the 
+ * class in it 
+ */
 class Point {
 	int x;
 	int y;
