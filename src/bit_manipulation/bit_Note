@@ -51,6 +51,18 @@ Bit operation
 		    So XOR can be used in finding single number in an array
 		    whose other elements are in pairs
 		    
+		    example in finding missing number in a n-1 size array with each element ranging from 0 to n
+		    (no duplicate)
+		    	assume array {A1, A2, A4} A3 is missing
+		    	X1 = A1 ^ A2 ^ A4
+		    	X2 = A1 ^ A2 ^ A3 ^ A4
+		    	
+		    	X1 ^ X2 = (A1 ^ A2 ^ A3) ^ (A1 ^ A2 ^ A3 ^ A4)
+		    	        = (A1 ^ A1) ^ (A2 ^ A2) ^ (A4 ^ A4) ^ A3
+		    	        = 0 ^ 0 ^ 0 ^ A3
+		    	        = 0 ^ A3
+		    	        = A3
+		    
 	<< Bitwise left shift:
 	1000 ... 0001 << 1 = 1000 ... 0010 (complement 0 at the least significant bit)
 	
