@@ -1,0 +1,67 @@
+Bit representation
+                        0000 0000 0000 0000 0000 0000 0000 0000
+     most significant bit                                     least significant bit
+     
+Two's complement: for any bitwise number, its negative form is to negate each bit and plus 1
+
+In Java:
+		Java only has signed integer
+		so Integer.MAX_VALUE = 0111 .... 1111 = 2^0 + 2^1 + ... + 2^30 = 2^31 - 1;
+		   Integer.MIN_VALUE = 1000 .... 0000;
+		   
+		   -1 = 1111 1111 ... 1111
+		   
+		(bitwise) Integer.MAX_VALUE + 1 = Integer.MIN_VALUE;
+		
+Bit operation	
+	& AND:
+		 1011 1110
+	   & 0101 1011
+	   = 0001 1010
+	tips for &:
+		 1. Any bit & with 1 would return itself (e.g:using for hamming weight counting or reverse bit)
+		 2. Any bit & with 0 will return 0
+		 3. In hash_map implementation, if we want to guarantee result of hash(K key) is positive
+		    we can apply key.hashCode() & 0X7FFFFFFF so most significant bit will always be 1 without
+		    changing any other bits' number
+		    
+	| OR:
+		 1011 1110
+	   | 0101 1011
+	   = 1111 1111
+	tips for |: 
+			1. Any bit | with 1 will return 1
+			2. Any bit | with 0 will return itself
+			
+	~ NOT: flip each bit
+		 ~1011 1110 
+	   =  0100 0001
+
+	^ XOR: 
+		1 0 , 0 1 -> 1
+		00 -> 0
+		11 -> 0 
+	
+	tips for ^:
+			For a number A: A ^ 0 = A
+							A ^ A = 0
+							A ^ 0 ^ A = 0
+							
+		    It also satisfies: A ^ B ^ A = A ^ A ^ B = 0 ^ B = B
+		    So XOR can be used in finding single number in an array
+		    whose other elements are in pairs
+		    
+	<< Bitwise left shift:
+	1000 ... 0001 << 1 = 1000 ... 0010 (complement 0 at the least significant bit)
+	
+	>> Bitwise right shift:
+	1000 ... 0001 >> 1 = 0100 ... 0000 (complement the same number as the most significant bit)
+	eg: 1111 .... 1111 >> 1 = 1111 .... 1111 (most significant sign bit 1 will be complemented as 1) 
+	
+	Java only has signed int before Java8, but Java has unsigned logic right shift
+	>>> Logic right shift: 1111 .... 1111 >> 2 = 0011 .... 1111
+		
+   	
+	
+		 
+  
