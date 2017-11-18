@@ -12,7 +12,7 @@ public class BitTest {
 		System.out.println(String.format("%32s", Integer.toBinaryString(b >>> 3)).replace(' ', '0'));
 		
 		char c = '%';
-		int indexOfChar = c;
+		int indexOfChar = c; // char and int can be converted automatically
 		System.out.println(indexOfChar);
 	}
 }
