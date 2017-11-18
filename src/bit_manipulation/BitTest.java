@@ -10,5 +10,9 @@ public class BitTest {
 		int b = -1;
 		// pad 0 on the significant bits
 		System.out.println(String.format("%32s", Integer.toBinaryString(b >>> 3)).replace(' ', '0'));
+		
+		char c = '%';
+		int indexOfChar = c;
+		System.out.println(indexOfChar);
 	}
 }
