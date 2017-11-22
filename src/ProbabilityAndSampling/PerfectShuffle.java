@@ -9,6 +9,10 @@ package ProbabilityAndSampling;
 	
 	The given array is not null
  */
+/*
+ * basic idea: to construct a function that can choose random one from rest elements
+ * i.e. c(n, 1), c(n-1, 1) c(n-2, 1) c(n-3, 1)...  
+ */
 public class PerfectShuffle {
 	public void shuffle(int[] nums) {
 		if (nums == null || nums.length == 0) {
