@@ -39,7 +39,7 @@ public class AllUniqueCharacters2 {
 			int index = c; // automatically convert char to int
 			int row = index / 32; // row index in bitMap
 			int col = index % 32; // col index in bitMap
-			if ((bitMap[row] & (1 << col)) > 1) { // occur more than once in bitMap
+			if ((bitMap[row] & (1 << col)) != 0) { // occur more than once in bitMap
 				return false;
 			} else {
 				bitMap[row] = (bitMap[row] | (1 << col));
