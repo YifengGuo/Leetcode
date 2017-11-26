@@ -18,7 +18,7 @@ package ProbabilityAndSampling;
  *   so we need to call random2() for 20 times to from a binary representation of 
  *   the number [0, 2 ^ 20 - 1] which is greater than 1,000,000
  *   
- *   	if random falss into [0, 1,000,000 - 1], then return random it
+ *   	if random falls into [0, 1,000,000 - 1], then return random it
  *      else re-generate random2() 20 times until the value falls into [0, 1,000,000 - 1] 
  */
 public class Random2ToTheNUsingRandom2 {
