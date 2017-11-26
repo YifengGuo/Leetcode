@@ -1,0 +1,21 @@
+Heap: PriorityQueue in Java
+      is an unsorted array but have special rules to follow
+      
+      Heap is implemented by constructing binary heap.
+      
+Properties of heap(binary heap):
+	1. Any node is smaller (or greater) than all of its descendants.
+	   The smallest (or greatest) element is always at root
+	2. Heap is always a complete tree
+	3. maxheap and minHeap
+	4. assume index of parent is x then: 
+       index of left_child = 2 * x + 1
+       index of right_child = 2 * x + 2
+    5. unsorted but follow rules above
+    
+Supported operations:
+	insert/offer(E e): O(log(n))
+	update(int index, E e): O(log(n))
+	get/top(): O(1)
+	pop(): O(log(n))
+	heapify(int[] array): O(n)
