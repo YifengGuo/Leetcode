@@ -14,5 +14,13 @@ public class BitTest {
 		char c = '%';
 		int indexOfChar = c; // char and int can be converted automatically
 		System.out.println(indexOfChar);
+		
+		// if we want to convert integer to x-form (binary or hex)
+		// we could simply keep MOD x and divided by x
+		// eg: int to hex
+//		while (i > 0) {
+//			sb.append(toHex(i % 16));
+//			i /= 16;
+//		}
 	}
 }
