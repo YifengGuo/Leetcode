@@ -24,10 +24,19 @@ package ProbabilityAndSampling;
 public class Random2ToTheNUsingRandom2 {
 	public static int random10_to_the_6() { // generate a random number from 0 to 1,000,000
 		while (true) {
+			// the following 4 lines of code is usually used to compute:
+			// a0*x^0 + a1*x^1 + a2*x^2 + a3*x^3 + ... + ak*x^k
+			// e.g:  a*2^3 + b*2^2 + c*2^1 + d*2^0
+			//     = 2 * (a*2^2 + b* 2^1 + c*2^0) + d*2^0
+			// so this is an iterative algorithm to compute
+			// a0*x^0 + a1*x^1 + a2*x^2 + a3*x^3 + ... + ak*x^k
+			// which can efficiently grow up to be greater than bound we want(e.g 1,000,000)
+			// for x^0 + x^1 + x^2 + ...+ x^(n-1) = x^n - 1
 			int num = 0;
 			for (int i = 0; i < 20; i++) {
 				num = 2 * num + random2();
 			}
+			// if random number num falls in range [0, 1000000 - 1], then return 
 			if (num < 1000000) {
 				return num;
 			}
