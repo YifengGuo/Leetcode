@@ -19,3 +19,29 @@ Supported operations:
 	get/top(): O(1)
 	pop(): O(log(n))
 	heapify(int[] array): O(n)
+	
+	
+For encapsulation, Java or C++ does not emerge any API 
+that can help us change element which is not at top.
+However, if we do want to implement this feature, we can use
+a hash_map which maintains the mapping of element and its index
+in array of heap. <key:element, value: index of array>. So whenever
+we percolate elements in heap, we change its value in hash_map.
+
+
+What if we want to delete an element that is not the top element of heap?
+                        7
+                       / \
+                      X   2
+                     / \  /
+                    5  4  6
+       
+1. Eager Deletion: we must perform this action right after the command
+                   is received
+                   e.g: classical way to delete x in the heap. We put 6 at
+                        place x and to see if 6 is greater than x or less than
+                        x to determine to percolate up or percolate down.
+
+
+2. Lazy Deletion:
+		
