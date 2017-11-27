@@ -36,12 +36,19 @@ What if we want to delete an element that is not the top element of heap?
                      / \  /
                     5  4  6
        
-1. Eager Deletion: we must perform this action right after the command
-                   is received
+1. Eager Deletion: 
+                  We must perform this action right after the command is received
                    e.g: classical way to delete x in the heap. We put 6 at
                         place x and to see if 6 is greater than x or less than
-                        x to determine to percolate up or percolate down.
+                        x and determine to percolate up or percolate down.
 
 
 2. Lazy Deletion:
+	            We can use another hash_set<element> to buffer all the nodes that are
+	            currently NOT the top element but need to be deleted
+	            Whenever we want to do top/pop(), we have to check against the hash_set
+	            to see whether the current top element is in the hash_set or not
+	            case1: not in the hash_set, the top element is valid, do normal operation
+	            case2: is in the hash_set, we keep popping this pop element until the top 
+	                   element is no in the hash_set
 		
