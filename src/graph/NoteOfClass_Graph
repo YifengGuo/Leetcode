@@ -1,0 +1,103 @@
+Graph
+ 0 - 1
+ |  /| \
+ | / |  2
+ 4 - 3 /
+ 
+ 
+ Basic implementation of a search engine:
+ 	Treat all the web pages as nodes in the graph
+ 	Pages(nodes) are connected by hyper-links
+ 	So when search something by key word
+ 	the search engine crawled all the pages which 
+ 	matched the key word in semantics and presented
+ 	them by their weights
+ 	
+ 	
+Representation for graph:
+	 1. adjacency matrix  
+	 	pros: easy to implement
+	 	      O(1) to query edge existence
+	 	cons: space complexity O(V^2) even though
+	 	      the graph is very sparse
+	 	      
+	 2. adjacency list
+	     0 -> 1 -> 3
+	     1 -> 0 -> 4 -> 3 -> 2
+	     ...
+	     
+	     pros: space complexity = O(V + E)
+	     cons: time complexity = O(V) to query edge existence between
+	           any two nodes by traversing the list
+	           
+	     optimization of adjacency list: use a hash_map
+	      key : node
+	      value : set of successors
+	      
+	      <0, <1,3>>
+	      <1, <0,2,3,4>>
+	      
+	      so time and space complexity are both optimized 
+	      
+Breadth First Search
+                 1   expand(1)  --> generate(3) and generate(2)
+                / \
+               3   2
+              / \  /
+             5  4  7
+            / \
+           9  11   
+	How to describe a relatively complex algorithm
+		a. what kind of data structure that the algorithm uses?
+			1. queue
+			 use queue's FIFO property to maintain the process order for all the TreeNodes
+			 i.e the earlier parent nodes being processed, so do their child nodes
+			     then the tree is searched layer by layer 
+		b. what are the actions of this algorithm step by step  
+			1. initial state: insert the start node into the queue
+			2. while the queue is not empty:
+				pop the left most element out of the queue
+					generate all its successors and insert all of them into the tail of queue
+		        termination condition: the queue is empty
+		        
+    When to use BFS?
+     When we need to deal with the relationship between nodes in the same level
+     
+     
+Best First Search: 
+                       BFS2 is a general term/class
+                          /  |   |  \
+                        Dijkstra's
+                          |
+                         A*
+                         / \
+                        D*  D*Lite .... MT-D*Lite 
+                   implemented by PriorityQueue (heuristic() == 0)
+                   while A* f() = c*() + h() which h() is not 0
+                   
+   Common mistake: Breadth First Search in NOT the right algorithm to find the shortest
+                   path from point A to point B in an arbitrary graph(cost might not be
+                   the same)
+                   
+                   
+    Properties of Best First Search:
+    	1. One node can be expanded once and only once (can only be popped from pq once)
+    	2. One node can be generated more than once (cost can be reduced over time)
+    	3. ALL THE COST OF THE NODES THAT ARE EXPANDED ARE MONOTONICALLY NON-DECREASING
+	    	   for the cost of any edge is positive, so cost of later expanded nodes must be
+	    	   greater than cost of earlier expanded nodes
+    	4. time = O(nlogn)
+    	5. WHEN A NODE IS POPPED OUT FOR EXPANSION, ITS VALUE IS FIXED WHICH IS EQUAL TO
+    	   THE SHORTEST DISTANCE FROM THE START NODE
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 
