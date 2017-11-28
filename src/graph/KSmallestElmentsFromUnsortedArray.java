@@ -1,4 +1,8 @@
 package graph;
+
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 /**
  * 
  * @author yifengguo
@@ -69,11 +73,57 @@ package graph;
  *         
  */
 public class KSmallestElmentsFromUnsortedArray {
-	public int find(int[] nums) {
+	/*
+	 * solution 2: maxHeap
+	 * time = O(k) + O((n - k)* logk)
+	 */
+	public int[] kSmallest(int[] nums, int k) {
+		int[] res = new int[k];
 		if (nums == null || nums.length == 0) {
-			return -1;
+			return res;
 		}
-		int res = 0;
+		if (k == 0) {
+		  return new int[0];
+		}
+		PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+		// add first k elements of array into maxHeap
+		for (int i = 0; i < k; i++) {
+			maxHeap.offer(nums[i]);
+		}
+		// compare last n-k elements of array with heap's top
+		// if maxHeap.top() < new element, continue
+		// if maxHeap.top() > new element, maxHeap.poll() and maxHeap.offer(new element)
+		for (int i = k; i < nums.length; i++) {
+			if (maxHeap.peek() < nums[i]) {
+				continue;
+			} else {
+				maxHeap.poll();
+				maxHeap.offer(nums[i]);
+			}
+		}
+		for (int i = maxHeap.size() - 1; i >= 0; i--) {
+			res[i] = maxHeap.poll();
+		}
 		return res;
 	}
+
+	/*
+	 * solution 1: minHeap
+	 * time = O(n) + O(k * logn)
+	 */
+	public int[] kSmallest_minHeap(int[] nums, int k) {
+		int[] res = new int[k];
+		if (nums == null || nums.length == 0) {
+			return res;
+		}
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+		for (int i = 0; i < nums.length; i++) {
+			minHeap.offer(nums[i]);
+		}
+		for (int i = 0; i < k; i++) {
+			res[i] = minHeap.poll();
+		}
+		return res;
+	}
+
 }
