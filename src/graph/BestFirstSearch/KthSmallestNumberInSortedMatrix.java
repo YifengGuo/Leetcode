@@ -1,4 +1,8 @@
 package graph.BestFirstSearch;
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * 
  * @author yifengguo
@@ -23,6 +27,65 @@ package graph.BestFirstSearch;
 	the 5th smallest number is 4
 	the 8th smallest number is 6
  */
+/*
+ * basic idea: best first search using PriorityQueue
+ *             the kth smallest element is the kth
+ *             entry polled by pq as well
+ *             and because we need to check validation of next
+ *             added element, so we need to apply an auxiliary 
+ *             class to record entry's coordinates and its value
+ *             in matrix
+ */
 public class KthSmallestNumberInSortedMatrix {
+	class Entry {
+		int x; // x coordinate in matrix
+		int y; // y coordinate in matrix
+		int value; // value of matrix[x][y]
 
+		public Entry(int x, int y, int value) {
+			this.x = x;
+			this.y = y;
+			this.value = value;
+		}
+	}
+
+	public int kthSmallest(int[][] matrix, int k) {
+		if (matrix == null || matrix.length == 0 || matrix[0].length == 0 || k <= 0) {
+			return Integer.MAX_VALUE;
+		}
+		int m = matrix.length;
+		int n = matrix[0].length;
+		boolean[][] visit = new boolean[m][n];
+		PriorityQueue<Entry> pq = new PriorityQueue<>(new Comparator<Entry>() {
+			@Override
+			public int compare(Entry e1, Entry e2) {
+				if (e1.value == e2.value) {
+					return 0;
+				}
+				return e1.value < e2.value ? -1 : 1;
+			}
+		});
+		pq.offer(new Entry(0, 0, matrix[0][0]));
+		visit[0][0] = true;
+		int count = 0;
+		while (!pq.isEmpty()) {
+			Entry cur = pq.poll();
+			count++;
+			if (count == k) {
+				return cur.value;
+			}
+			// go down
+			if (cur.x + 1 < m && !visit[cur.x + 1][cur.y]) {
+				pq.offer(new Entry(cur.x + 1, cur.y, matrix[cur.x + 1][cur.y]));
+				visit[cur.x + 1][cur.y] = true;
+			}
+			// go right
+			if (cur.y + 1 < n && !visit[cur.x][cur.y + 1]) {
+				pq.offer(new Entry(cur.x, cur.y + 1, matrix[cur.x][cur.y + 1]));
+				visit[cur.x][cur.y + 1] = true;
+			}
+		}
+		return -1;
+	}
 }
+
