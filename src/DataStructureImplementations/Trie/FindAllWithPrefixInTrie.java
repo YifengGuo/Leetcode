@@ -44,9 +44,12 @@ public class FindAllWithPrefixInTrie {
 		}
 		// base case
 		// arrive the leaf node of trie
-		if (cur.children.size() == 0) {
-			return;
-		}
+		// for the for loop on hash map will check the size
+		// if size of map is 0, then the dfs function will not be invoked
+		// so the for loop can be seen as base case as well
+//		if (cur.children.size() == 0) {
+//			return;
+//		}
 		/*
 		 * dfs on all the children of current TrieNode
 		 */
