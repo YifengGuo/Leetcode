@@ -1,6 +1,39 @@
 package DataStructureImplementations.Trie;
 
+/**
+ * 
+ * @author guoyifeng
+ * Given a 2D board and a word, find if the word exists in the grid.
 
+The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells 
+are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+
+For example,
+Given board =
+
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+word = "ABCCED", -> returns true,
+word = "SEE", -> returns true,
+word = "ABCB", -> returns false.
+ */
+/*
+ * basic idea: DFS + auxiliary matrix to record visited cells
+ * Time Complexity:
+ * 	the time complexity analysis on this problem and Word Search 2 is hard and important:
+ * 		Assume m, n are the side length of board matrix
+ *             length of word is i
+ *      The layers of dfs tree is i for we need to check each character of the word
+ *      and on each layer of dfs, we at worst case need to run dfs() on four directions
+ *      so we have total 4 ^ i nodes in the dfs tree based on one single cell as root in the board
+ *      and we have m * n cells in the board
+ *      so the complexity of this problem is :
+ *      	O(m * n * 4 ^ i)
+ * 
+ */
 public class WordSearch {
 	static final int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 	public boolean exist(char[][] board, String word) {
@@ -49,9 +82,10 @@ public class WordSearch {
 			int neiX = dir[0] + x;
 			int neiY = dir[1] + y;
 			if (dfs(board, m, n, word, neiX, neiY, index + 1, visited)) { // if find such path
-				visited[x][y] = false; // because the visited matrix is defined out of the recursion function
-				                       // so must recover the backtracking node back to false even if return true
-				                       // this step is really important!!!
+				// visited[x][y] = false; // if do not recover the visited[x][y] back to false
+				                          // dfs will be stopped once it finds first word matches
+				                          // given word, in this problem, do not have to recover
+				                          // but necessary when find multiple matched words
 				return true;
 			}
 		}
