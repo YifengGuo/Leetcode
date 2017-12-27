@@ -1,4 +1,4 @@
-package graph;
+package DataStructureImplementations.Heap;
 
 import java.util.NoSuchElementException;
 
