@@ -35,11 +35,11 @@ import java.util.List;
  * Demo for all permutation
  * 							         1 2 3
  *                         /           |         \
- *                      1(23)        2(13)         3(12)                     level 0
+ *                      1(23)        2(13)         3(21)                     level 0
  *                      /  \         /    \        /   \
- *                    2(3) 3(2)     1(3) 3(1)     1(2) 2(1)                  level 1
+ *                    2(3) 3(2)     1(3) 3(1)     2(1) 1(2)                  level 1
  *                     |    |         |    |       |    |    
- *                     3    2        3     1       2    1                    level 2
+ *                     3    2        3     1       1    2                    level 2
  *                     
  *      time = O(n!)
  *      space = O(n)
