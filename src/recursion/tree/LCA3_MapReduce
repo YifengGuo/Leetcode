@@ -1,0 +1,56 @@
+Follow up 2:
+	Given a very large tree with trillion nodes, and you are provided with 1024 machines.
+	How can you utilize it to make it faster to solve the LCA problem correctly?
+
+	2 ^ 10 = 1024 ~ 1000 machines
+	
+	
+	case 1: if a and b are both very shallow (level < 10):
+				One machine can accomplish this task
+				(Base case: if level > 10, return null) do not dig deeper if a and b are not shallow
+				
+	case 2: if a or b is very shallow
+	
+	
+	case 3: if a and b are very deep
+	
+	
+		step 1: BFS1 to determine which case (among case 1 2 3) we are facing
+		step 2: LCA
+					if case 1: LCA(root, a, b) with a level limit of 10
+					if case 2: a is shallow and b is deep
+					           at level 10 for there are ~ 1000 nodes on this layer
+					           we can run MapReduce on this level
+					           1000 machines to find b (search algorithm)
+	level 10: M1(Node10_1) M2(Node10_2) .....                            ...   M1000(Node10_1000)
+	
+								Assume M100 return b:
+									Then return LCA(root, a, Node10_100)
+									
+					if case 3: a and b are both very deep:
+							   Run LCA on each node on level 10
+	M1(Node10_1, a, b) M2(Node10_2, a, b) M3(Node10_3, a, b) ....      M999(Node10_999, a, b) M1000(Node1000_1, a, b) 
+						
+							case 3.1: if only one machine (M100) return a node (node c), then the final result is node c
+							          here a and b are not subjected to each other
+							case 3.2: if only one machine (M100) return node A, then the final result is A
+							          here B is subjected to A
+							case 3.3: if two machines(M100, M200) have non-NULL result, which means a and b both exist in the tree and 
+					                  are not subjected to each other, then 
+					                  			return LCA(root, M100, M200) within the top 10 level of tree to find the LCA
+								
+	
+                                                     root
+L1
+
+L2
+
+L3
+
+L5
+
+
+L10
+
+...
+
