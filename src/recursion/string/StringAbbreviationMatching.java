@@ -61,10 +61,10 @@ public class StringAbbreviationMatching {
 				return false;
 			}
 		} else { // case 2: pattern points to number while another points to letter
-			int num = toInt(pattern.charAt(j));
-			while (j < pattern.length() - 1 && isDigit(pattern.charAt(j + 1))) {
-				j++;
+			int num = 0;
+			while (j < pattern.length() && isDigit(pattern.charAt(j))) {
 				num = num * 10 + toInt(pattern.charAt(j));
+				j++;
 			}
 			i += num;
 			return helper(input, i, pattern, j);
