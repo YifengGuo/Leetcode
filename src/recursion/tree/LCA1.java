@@ -26,6 +26,15 @@ package recursion.tree;
 	
 	The lowest common ancestor of 2 and 9 is 9
  */
+/*
+ * basic idea: 3-step process (applicable for all bottom-up value pass problems)
+ * 		step 1: what do you expect from you left-child / right-child
+ *              (usually it is the return type of the recursion function)
+ *              
+ *      step 2: what do you want to do in the current layer?
+ *      
+ *      step 3: what do you want to report to your parent node? (value passed during step 1 and step 3 is the same)
+ */
 class TreeNode {
 	public int key;
 	public TreeNode left;
