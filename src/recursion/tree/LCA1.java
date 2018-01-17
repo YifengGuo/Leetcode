@@ -43,7 +43,7 @@ public class LCA1 {
 		TreeNode right = lowestCommonAncestor(root.right, a, b);
 		if (left == null && right == null) {
 			return null;
-		} else if (root == null || right == null) {
+		} else if (left == null || right == null) {
 			return left == null ? right : left;
 		} else {
 			return root;
