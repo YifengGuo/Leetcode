@@ -79,4 +79,31 @@ public class MaximumPathSumBinaryTree3 {
 		helper(root.left, Math.max(prefixSum + root.key, 0)); // update prefixSum and go left
 		helper(root.right, Math.max(prefixSum + root.key, 0)); // update prefixSum and go right
 	}
+	
+	// method 2: dp: largest subarray
+	public int globalMax2 = Integer.MIN_VALUE;
+	public int maxPathSum2(TreeNode root) {
+		if (root == null) {
+			return Integer.MIN_VALUE;
+		}
+		int sum = 0; // cache prefix sum
+		helper2(root, sum);
+		return globalMax2;
+	}
+	
+	private void helper2(TreeNode root, int sum) {
+		if (root == null) {
+			return;
+		}
+		if (sum < 0) {
+			sum = root.key; // if sum cannot do positive contribution, discard it and reset it as current root.key
+		} else {
+			sum += root.key; // if sum can do positive contribution, keep and increase it
+		}
+		globalMax2 = Math.max(globalMax2, sum);
+		helper2(root.left, sum);
+		helper2(root.right, sum);
+	}
+	
+	
 }
