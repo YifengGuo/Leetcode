@@ -34,7 +34,7 @@ import java.util.List;
 public class TwoSumAllPair2 {
 	public static List<List<Integer>> allPairs(int[] array, int target) {
 		List<List<Integer>> res = new ArrayList<>();
-		if (array == null || array.length == 0) {
+		if (array == null || array.length < 2) {
 			return res;
 		}
 		Arrays.sort(array);

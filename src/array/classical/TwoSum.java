@@ -25,7 +25,7 @@ import java.util.Map;
 public class TwoSum {
 	// method 1: hashMap
 	public boolean existSum1(int[] array, int target) {
-		if (array == null || array.length == 0) {
+		if (array == null || array.length < 2) {
 			return false;
 		}
 		Map<Integer, Integer> map = new HashMap<>();

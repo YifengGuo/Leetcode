@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class ThreeSum {
 	public List<List<Integer>> allTriples(int[] array, int target) {
-		if (array == null || array.length == 0) {
+		if (array == null || array.length < 3) {
 			return new ArrayList<>();
 		}
 		List<List<Integer>> res = new ArrayList<>();
