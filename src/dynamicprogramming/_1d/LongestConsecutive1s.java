@@ -29,12 +29,12 @@ public class LongestConsecutive1s {
 		int globalMax = 0;
 		int preSum = 0;
 		for (int i = 0; i < array.length; i++) {
-			if (array[i] == 0) { // case 1: current value is 0
-				if (i == 0 || array[i - 1] == 1) {
-					preSum = 0;
+			if (array[i] == 1) { // case 1: current value is 0
+				if (i == 0 || array[i - 1] == 0) {
+					preSum = 1;
+				} else {
+					preSum++;
 				}
-			} else {
-				preSum++;
 			}
 			globalMax = Math.max(preSum, globalMax);
 		}
