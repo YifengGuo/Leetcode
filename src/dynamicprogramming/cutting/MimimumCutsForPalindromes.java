@@ -16,12 +16,16 @@ package dynamicprogramming.cutting;
 
 
  */
+/*
+ * time = O(n ^ 2)
+ * space = O(n ^ 2)
+ */
 public class MimimumCutsForPalindromes {
 	public int minCuts(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
 		}
-		// M[i] represents minimum cut by the end of i to
+		// M[i] represents minimum cut by the end of i - 1 to
 		// make each part is palindrome
 		int[] M = new int[s.length() + 1];
 		boolean[][] isPalindrome = checkPalindrome(s);
@@ -35,7 +39,10 @@ public class MimimumCutsForPalindromes {
 		}
 		return M[s.length()] - 1;
 	}
-
+	
+	/*
+	 * to check if s.substring(j - 1, i - 1] is palindrome
+	 */
 	private boolean[][] checkPalindrome(String s) {
 		boolean[][] dict = new boolean[s.length() + 1][s.length() + 1];
 		for (int i = 1; i <= s.length(); i++) {
