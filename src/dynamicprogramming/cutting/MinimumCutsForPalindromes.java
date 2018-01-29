@@ -20,7 +20,7 @@ package dynamicprogramming.cutting;
  * time = O(n ^ 2)
  * space = O(n ^ 2)
  */
-public class MimimumCutsForPalindromes {
+public class MinimumCutsForPalindromes {
 	public int minCuts(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
@@ -57,7 +57,7 @@ public class MimimumCutsForPalindromes {
 	
 	public static void main(String[] args) {
 		String s = "aaaaaabbabb";
-		MimimumCutsForPalindromes test = new MimimumCutsForPalindromes();
+		MinimumCutsForPalindromes test = new MinimumCutsForPalindromes();
 //		boolean[][] dict = test.checkPalindrome(s);
 //		for (int i = 0; i < dict.length; i++) {
 //			for (int j = 0; j < dict[0].length; j++) {
