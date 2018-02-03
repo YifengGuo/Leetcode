@@ -35,7 +35,7 @@ public class LargestSetOfPointsWithPositiveSlope {
 				return p1.x < p2.x ? -1 : 1;
 			}
 		});
-		// M[i] represents the largest set from index 0 to index i(exclusive)
+		// M[i] represents the largest set from index 0 to index i(exclusive) without considering duplicate
 		int M[] = new int[points.length];
 		Arrays.fill(M, 0); // initialize each entry as 0
 		int globalMax = 0;
@@ -52,7 +52,8 @@ public class LargestSetOfPointsWithPositiveSlope {
 						M[i] = Math.max(M[j] + 1, M[i]);
 					}
 				}
-				most = Math.max(M[i], most); // update most
+				most = Math.max(M[i], most); // update most for there are different lines ended at points[i]
+				                             // but starting from different points
 			}
 			if (most != 0) { // if point[i] can built a valid line, we need add all duplicate points[i] to this line
 				most += same;
