@@ -39,7 +39,7 @@ public class LargestSetOfPointsWithPositiveSlope {
 				}
 				most = Math.max(M[i], most);
 			}
-			globalMax = most != 0 ? Math.max(globalMax, most) + same : Math.max(globalMax, most);
+			globalMax = Math.max(globalMax, most);
 		}
 		return globalMax;
 	}
