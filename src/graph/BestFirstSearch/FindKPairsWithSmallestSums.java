@@ -58,7 +58,7 @@ import java.util.PriorityQueue;
  *  3. termination condition: meet the kth element polled out from heap or heap is empty
  *  
  *  time = O(n log k)
- *  space = O(n)
+ *  space = O(n ^ 2)
  */
 public class FindKPairsWithSmallestSums {
 	class Point {
