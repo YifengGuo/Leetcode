@@ -19,6 +19,10 @@ import java.util.PriorityQueue;
 
 
  */
+/*
+ * time = O(n ^ 3)
+ * space = O(n ^ 2)
+ */
 public class LargestProductOfLength {
 	class Pair {
 		int idx1;
@@ -64,7 +68,7 @@ public class LargestProductOfLength {
 		while (!maxHeap.isEmpty()) {
 			Pair cur = maxHeap.poll();
 			// step 3 termination condition
-			if (hasNoCommon(dict[cur.idx1], dict[cur.idx2])) {
+			if (hasNoCommon(dict[cur.idx1], dict[cur.idx2])) { // O(n ^ 2)
 				return cur.product;
 			}
 			// generation
