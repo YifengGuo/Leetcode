@@ -1,0 +1,5 @@
+1. Initial state (start node)
+
+2. Node Expansion / Generation rule
+
+3. Termination condition (meet requirement or pq is empty which means each node has been offered and polled into and from pq)

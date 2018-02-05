@@ -48,6 +48,17 @@ import java.util.PriorityQueue;
  *             
  *             and we need to also pay attention to k and m * n
  *             relationship
+ *             
+ *  1. initial state: point[0][0]  (start node which needs to offer into heap at very beginning)
+ *  
+ *  2. expansion / generation rule:
+ *                    2.1 expand point[i][j]  (poll out from heap)
+ *                    2.2 generate matrix[i + 1][j]
+ *                                 matrix[i][j + 1]   if it is not out of bound and not visited
+ *  3. termination condition: meet the kth element polled out from heap or heap is empty
+ *  
+ *  time = O(n log k)
+ *  space = O(n)
  */
 public class FindKPairsWithSmallestSums {
 	class Point {

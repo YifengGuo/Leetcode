@@ -35,6 +35,17 @@ import java.util.PriorityQueue;
  *             added element, so we need to apply an auxiliary 
  *             class to record entry's coordinates and its value
  *             in matrix
+ *             
+ *  1. initial state: matrix[0][0]  (start node which needs to offer into heap at very beginning)
+ *  
+ *  2. expansion / generation rule:
+ *                    2.1 expand matrix[i][j]  (poll out from heap)
+ *                    2.2 generate matrix[i + 1][j]
+ *                                 matrix[i][j + 1]   if it is not out of bound and not visited
+ *  3. termination condition: meet the kth element polled out from heap or heap is empty
+ *  
+ *  time = O(n log k)
+ *  space = O(k)
  */
 public class KthSmallestNumberInSortedMatrix {
 	class Entry {
