@@ -37,7 +37,7 @@ L = 10, A = {2, 4, 7}, the minimum total cost is 10 + 4 + 6 = 20 (cut at 4 first
  *              M[0][2] = M[2][4] = M[4][7] = M[7][10] = 0
  *              
  *              size = 2 [left = i, right = i + 2]
- *              M[0][4] = (A[4] - A[2])        +      M[0][2] + M[2][4]           ===== 4 + 0 + 0 = 4
+ *              M[0][4] = (A[4] - A[0])        +      M[0][2] + M[2][4]           ===== 4 + 0 + 0 = 4
  *                        cost of cutting 4
  *              M[2][7] = (A[7] - A[2])        +      M[2][4] + M[4][7]           ===== 5 + 0 + 0 = 5
  *                        cost of cutting 5
@@ -93,7 +93,7 @@ public class CuttingWood1 {
 									// so cost is 0
 					M[j][i] = 0;
 				} else { // iterate all possible cases with different cutting positions
-					M[j][i] = Integer.MAX_VALUE; // at first the minimum cost between j and i are unknown
+					M[j][i] = Integer.MAX_VALUE; // at first the minimum cost between j and i is unknown
 					for (int k = j + 1; k <= i - 1; k++) { // choose cutting position between j and i
 						M[j][i] = Math.min(M[j][i], M[j][k] + M[k][i]);
 					}
