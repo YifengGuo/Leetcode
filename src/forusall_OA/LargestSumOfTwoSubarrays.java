@@ -52,6 +52,8 @@ public class LargestSumOfTwoSubarrays {
 			leftLargest2 = Math.max(tempLeft, leftLargest2);
 			rightLargest2 = Math.max(tempRight, rightLargest2);
 		}
+		// test result
+		System.out.println(leftLargest1 + " " + rightLargest1 + " " + leftLargest2 + " " + rightLargest2);
 		return Math.max(leftLargest2 + rightLargest2, leftLargest1 + rightLargest1);
 	}
 	
