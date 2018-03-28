@@ -1,4 +1,4 @@
-package TopInterviewQuestions.topological_sort;
+package graph.BreadthFirstSearch.course_schedule;
 
 import java.util.ArrayList;
 import java.util.List;
