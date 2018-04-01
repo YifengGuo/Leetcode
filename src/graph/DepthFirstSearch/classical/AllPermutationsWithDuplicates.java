@@ -24,12 +24,14 @@ import java.util.Set;
 /*
  * 	Demo:
  *                                  1 1 2
+ *                                   set
  *                    /               |                 \     
- *                  1(12)           1(12) (skip)       2(11)            <-set             level 0
+ *                  1(12)           1(12) (skip)       2(11)                      level 0
+ *                  set                                set
  *                 /    \           /   \             /   \   
- *                1(2)   2(1)      1(2)  2(1)        1(1)  1(1)(skip)   <-set             level 1  
+ *                1(2)   2(1)      1(2)  2(1)        1(1)  1(1)(skip)             level 1  
  *                |       |         |      |          |     |
- *                2       1         2      1          1     1           <-set             level 2
+ *                2       1         2      1          1     1                     level 2
  *                
  *                to de-duplicate, on each layer of dfs tree, we initialize a set.
  *                Only if set has not current element, shall we run dfs on it. If
