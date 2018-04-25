@@ -1,0 +1,28 @@
+1. Collections.sort()
+	In Java 6 and former version, the sort() was using MergeSort
+	In Java 7, the sort() begins to use TimSort()
+	
+	TimSort()
+	
+	
+2. HashMap and updates in Java 8
+	In Java 7:
+		the HashMap was implemented by array of Entry and LinkedList
+	In Java 8:
+		 a. the HashMap is implemented by array of Entry, LinkedList and Red-Black Tree
+		 b. HashMap at most allow one null key and allow multiple null values
+		 
+	
+	ConcurrentHashMap is thread-safe, HashMap is NOT thread-safe
+	
+3. Differences between String and StringBuilder
+	a. String is immutable, whenever apply "+" on String, it will produce a new String object, so it is 
+	   not recommended to use String when frequently modifying strings.
+	   Use StringBuilder instead (sb.append()) and JVM complier will optimize "+" to StringBuilder append() by default
+	   
+	b. StringBuilder has no thread lock so it is NOT thread-safe
+	   StringBuffer and String is thread-safe
+
+4. Differences between Vector and Array
+	a. 
+	
