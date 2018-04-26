@@ -23,6 +23,116 @@
 	b. StringBuilder has no thread lock so it is NOT thread-safe
 	   StringBuffer and String is thread-safe
 
-4. Differences between Vector and Array
-	a. 
+4. Differences between Vector and ArrayList
+	a. ArrayList resize strategy is size * 1.5 + 1
+	   Vector is size * 2
 	
+	b. Vector is thread-safe but its performance is NOT good
+	
+5. Between HashMap and Hashtable
+	a. Hashtable inherits from Dictionary class, HashMap inherits from AbstractMap class
+	
+	b. HashMap allows at most one null key and multiple null value
+	   Hashtable does NOT allow null key
+	   
+    c. Hashtable is thread-safe and HashMap is NOT thread-safe
+    
+6. Comparison between HashMap and ConcurrentHashMap. When two threads access the same linkedlist in the map,
+   one thread delete Entry in the tail and the other one do the traverse in the beginning. And why the later
+   thread can get the Entry deleted by the former thread?
+   
+   ConcurrentHashMap allows multiple modifications happen concurrently. The reason is ConcurrentHashMap uses
+   lock separation (An array maintain multiple objects and use these objects' locks as separated lock). 
+   
+   
+7. Differences between ArrayList and LinkedList
+    a. The low level data structure of ArrayList is array which supports random access by index
+       Physically linked in the memory (good locality)
+        
+       The LinkedList cannot support random access
+       NOT physically linked in the memory
+       
+8. Differences between Comparable and Comparator
+	a. Comparable interface is to define the natural order of the object (used to sort)
+	b. Comparator is interface used to define customized order (used to compare)
+	   Any class can only implements Comparable once (only one natural order), but each 
+	   class can have multiple comparators to define their comparison rules
+	   
+9. What is abstract class? Its differences between Interface? Why use it?
+	a. Abstract class cannot have any instance. Any class can only inherit from one super class but
+	   each class can have implemented multiple interfaces.
+	   
+	b. Interface is focus on the functions implemented, and Abstract focus the class similar property.
+	   Interface is "like-a", Abstract class is "is-a"
+	   
+	c. All the methods in the interface must be public and have no implemented functions (Java8 allows
+	   Interface have static implemented functions)
+	   Abstract class can have non-abstract functions 
+	
+	d. Abstract class is good for code reuse. Decrease the code quantity and decrease coupling.
+	
+10. Overload and Override
+	a. Overload: checked during compile time
+	   Override: checked during run time
+	   
+	b. Overload can be used in the same class but Override must be used in the child class which
+	   means inheritance is a must when using override
+	   
+	Override:
+		Methods and its overridden methods must have same method signature (method name + parameter list) and
+		return type. 
+		Overridden methods cannot have more strict access modifier than the methods they override
+		
+	Overload: 
+		Method name should be the same but parameter list (type and number and order) can be different
+		Return can be different
+		So overload means identical method name with different parameter list
+		
+11. Collection and Collections
+	a. Collection<E> is Java's basic Interface for all Collection classes
+	b. Collections is an utility class for collection in Java which offers several static methods to modify collections
+	
+12. Polymorphism:
+	Dynamic method dispatch if child class overrides methods of super class
+	
+13. Method of Object in Java by default:
+	clone()
+	
+	equals()
+	hashCode()
+	   
+	toString()
+	
+	notify()
+	notifyAll()
+	
+	wait()
+	
+	finalize()
+	
+	getClass()
+	
+14. Java Generics:
+	When initializing Collection or Map in Java, assign the type of entries or elements
+	And this Collection or Map can only accept this kind of type(s)
+	
+	Type Erasure:
+		<E> ---> Object
+		<E extends Comparable<E>>    ---> something implements Comparable<T>
+		
+15. New features in Java 8:
+	a. Lambda: anonymous function
+	b. Date and Time API
+	c. Interface can have static default implemented methods
+	d. Repeating annotations
+	
+16. TreeMap
+
+17. Singleton
+	Thread safe:
+		Enum
+		Static nested class
+
+18. poll() and remove()
+	poll() return null if failed
+	remove() throw exception if failed
