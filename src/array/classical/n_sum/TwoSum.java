@@ -1,4 +1,4 @@
-package array.classical;
+package array.classical.n_sum;
 
 import java.util.Arrays;
 import java.util.HashMap;
