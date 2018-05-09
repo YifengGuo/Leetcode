@@ -124,6 +124,7 @@ public class MyHashMap<K, V> {
 		// append it to the head of current bucket
 		Entry<K, V> newE = new Entry(key, value);
 		newE.next = head;
+		array[index] = newE;
 		size++;
 		if (needRehashing()) {
 			rehashing();
