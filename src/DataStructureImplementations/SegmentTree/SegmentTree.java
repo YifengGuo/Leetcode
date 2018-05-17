@@ -5,11 +5,30 @@ import java.util.Queue;
 
 class SegmentTreeNode {
 	SegmentTreeNode left, right;
-	int start, end;
+	int start, end; // left limit, right limit
+	int max; // Segment Tree with every node value
+	         // represents the corresponding interval
+					 // max value in the array
 	
 	public SegmentTreeNode(int start, int end) {
 		this.start = start;
 		this.end = end;
+	}
+	
+	/**
+	 * Second Constructor
+	 *    [3, 2, 1, 4]
+	 *                                  [0,3](max = 4)
+	 *                          /                           \
+	 *                  [0,1](max = 3)                      [1,3](max = 4)
+	 *                  /             \                          /          \
+	 *               [0,0](max = 3)  [1,1](max = 2)     [2,2](max = 1)     [3,3](max = 4)
+	 *
+	 *
+	 */
+	public SegmentTreeNode(int start, int end, int max) {
+		this(start, end);
+		this.max = max;
 	}
 	
 	@Override
@@ -35,6 +54,11 @@ class SegmentTreeNode {
  * If start == end, then node A has no child
  */
 public class SegmentTree {
+	/**
+	 * First method to build a Segment Tree
+	 * Time = O(n)
+	 * Space = O(n)
+	 */
 	public SegmentTreeNode build(int start, int end) {
 		// invalid case
 		if (start > end) {
@@ -56,6 +80,54 @@ public class SegmentTree {
 		return node;
 	}
 	
+  
+	/**
+	 * Second method to build a Segment Tree given an array
+	 */
+	public SegmentTreeNode build2(int[] arr) {
+		return buildSegmentTree(0, arr.length - 1, arr);
+	}
+
+	/**
+	 * Helper function fur build2()
+	 * build a Segment Tree by an array
+	 * initial left_limit is index 0
+	 * initial left_limit is index arr.length - 1
+	 */
+	private SegmentTreeNode buildSegmentTree(int start, int end, int[] arr) {
+		// base case
+		if (start > end) {
+			return null;
+		}
+		
+		// default max is set as arr[start]
+		SegmentTreeNode root = new SegmentTreeNode(start, end, arr[start]);
+
+		// base case
+		if (start == end) {
+			return root;
+		}
+
+		int mid  = start + ((end - start) >>> 1);
+		root.left = buildSegmentTree(start, mid, arr);
+		root.right = buildSegmentTree(mid + 1, end, arr);
+
+		// update max for the current node with greater value of left_child_max and right_child_max
+		if (root.left != null) {
+			root.max = root.left.max;
+		}
+
+		if (root.right != null && root.right.max > root.max) {
+			root.max = root.right.max;
+		}
+
+		return root;
+	}
+
+
+	/**
+	 * To print the Segment Tree by BFS
+	 */
 	private void BFS_print(SegmentTreeNode root) {
 		if (root == null) {
 			return;
