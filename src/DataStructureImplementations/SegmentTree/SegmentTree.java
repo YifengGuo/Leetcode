@@ -95,7 +95,7 @@ public class SegmentTree {
 	 * initial left_limit is index arr.length - 1
 	 */
 	private SegmentTreeNode buildSegmentTree(int start, int end, int[] arr) {
-		// base case
+		// invalid case
 		if (start > end) {
 			return null;
 		}
@@ -123,8 +123,31 @@ public class SegmentTree {
 
 		return root;
 	}
+	
+	/**
+	 * query the max value among the range [start, end] in current Segment Tree
+	 */
+	public int query(SegmentTreeNode root, int start, int end) {
+		// corner case
+		if (root == null || start > end || root.end < start || root.start > end) {
+			return Integer.MIN_VALUE;
+		}
 
+		// base case
+		// query range is in the current root's interval range
+		if (root.start >= start && root.end <= end) {
+			return root.max;
+		}
+		
+		int mid = root.start + ((root.end - root.start) >>> 1);
 
+		// get max value from both child within its corresponding valid interval range
+		int leftMax = query(root.left, start, Math.min(end, mid));
+		int rightMax = query(root.right, Math.min(mid + 1, start), end);
+		
+		// return larger max value from child nodes
+		return Math.max(leftMax, rightMax);
+	}
 	/**
 	 * To print the Segment Tree by BFS
 	 */
