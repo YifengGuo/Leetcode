@@ -10,6 +10,8 @@ class SegmentTreeNode {
 	         // represents the corresponding interval
 					 // max value in the array
 	
+	int count; // represents the element count in this node's range
+	
 	public SegmentTreeNode(int start, int end) {
 		this.start = start;
 		this.end = end;
@@ -148,6 +150,29 @@ public class SegmentTree {
 		// return larger max value from child nodes
 		return Math.max(leftMax, rightMax);
 	}
+
+	/**
+	 *	query the count of element among the current node's interval given
+	 *	with an array
+	 */
+	public int queryCount(SegmentTreeNode root, int start, int end) {
+		// invalid case
+		if (root == null || start > end || root.end < start || root.start > end) {
+			return 0;
+		}
+
+		if (root.start <= start && root.end >= end) {
+			return root.count;
+		}
+
+		int mid = root.start + ((root.end - root.start) >>> 1);
+		int leftCount = queryCount(root.left, start, Math.min(mid, end));
+		int rightCount = queryCount(root.right, Math.min(mid + 1, start), end);
+
+		return leftCount + rightCount;
+
+	}
+
 	/**
 	 * To print the Segment Tree by BFS
 	 */
