@@ -85,6 +85,7 @@ public class SegmentTree {
   
 	/**
 	 * Second method to build a Segment Tree given an array
+	 * This method enable query max value given interval
 	 */
 	public SegmentTreeNode build2(int[] arr) {
 		return buildSegmentTree(0, arr.length - 1, arr);
@@ -199,6 +200,10 @@ public class SegmentTree {
 		int end = 3;
 		SegmentTree tree = new SegmentTree();
 		SegmentTreeNode root = tree.build(start, end);
-		tree.BFS_print(root);
+		// tree.BFS_print(root);
+		
+		SegmentTreeNode root2 = tree.build2(new int[]{0, 5, 2, 1});
+		int queryMax = tree.query(root2, 0, 1);
+		System.out.println(queryMax);
 	}
 }
