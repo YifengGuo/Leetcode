@@ -175,6 +175,35 @@ public class SegmentTree {
 	}
 
 	/**
+	 * To modify the value of the entry on the given index of the array
+	 */
+	public void modify(SegmentTreeNode root, int index, int value) {
+		// invalid case
+		if (root == null || index < root.start || index > root.end) {
+			return;
+		}
+
+		// base case
+		if (index == root.start && index == root.end) {
+			root.max = value;
+			return;
+		}
+
+		int mid = root.start + ((root.end - root.start) >>> 1);
+
+		if (index <= mid) {
+			modify(root.left, index, value);
+		} else {
+			modify(root.right, index, value);
+		}
+
+		// update parent's max in bottom-up direction if necessary
+		root.max = Math.max(root.left == null ? Integer.MIN_VALUE : root.left.max,
+				                root.right == null ? Integer.MIN_VALUE : root.right.max);
+		return;
+	}
+
+	/**
 	 * To print the Segment Tree by BFS
 	 */
 	private void BFS_print(SegmentTreeNode root) {
