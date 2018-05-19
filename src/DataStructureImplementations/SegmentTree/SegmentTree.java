@@ -6,9 +6,9 @@ import java.util.Queue;
 class SegmentTreeNode {
 	SegmentTreeNode left, right;
 	int start, end; // left limit, right limit
-	int max; // Segment Tree with every node value
+	double max; // Segment Tree with every node value
 	         // represents the corresponding interval
-					 // max value in the array
+           // max value in the array
 	
 	int count; // represents the element count in this node's range
 	
@@ -22,15 +22,29 @@ class SegmentTreeNode {
 	 *    [3, 2, 1, 4]
 	 *                                  [0,3](max = 4)
 	 *                          /                           \
-	 *                  [0,1](max = 3)                      [1,3](max = 4)
+	 *                  [0,1](max = 3)                      [2,3](max = 4)
 	 *                  /             \                          /          \
 	 *               [0,0](max = 3)  [1,1](max = 2)     [2,2](max = 1)     [3,3](max = 4)
 	 *
 	 *
 	 */
-	public SegmentTreeNode(int start, int end, int max) {
+	public SegmentTreeNode(int start, int end, double max) {
 		this(start, end);
 		this.max = max;
+	}
+
+	/**
+	 * Third Constructor
+	 * Given [0, 2, 3]
+	 *                                  [0,3](count = 3)
+         *                          /                           \
+         *                 [0,1](count = 1)                      [2,3](count = 2)
+         *                  /             \                          /          \
+         *           [0,0](count = 1)  [1,1](count = 0)     [2,2](count = 1)     [3,3](count = 1)
+	 */
+	public SegmentTreeNode(int start, int end, int count) {
+		this(start, end);
+		this.count = count;
 	}
 	
 	@Override
@@ -87,8 +101,8 @@ public class SegmentTree {
 	 * Second method to build a Segment Tree given an array
 	 * This method enable query max value given interval
 	 */
-	public SegmentTreeNode build2(int[] arr) {
-		return buildSegmentTree(0, arr.length - 1, arr);
+	public SegmentTreeNode buildWithMax(int[] arr) {
+		return buildSegmentTreeWithMax(0, arr.length - 1, arr);
 	}
 
 	/**
@@ -97,7 +111,7 @@ public class SegmentTree {
 	 * initial left_limit is index 0
 	 * initial left_limit is index arr.length - 1
 	 */
-	private SegmentTreeNode buildSegmentTree(int start, int end, int[] arr) {
+	private SegmentTreeNode buildSegmentTreeWithMax(int start, int end, int[] arr) {
 		// invalid case
 		if (start > end) {
 			return null;
@@ -126,11 +140,52 @@ public class SegmentTree {
 
 		return root;
 	}
+
+	public SegmentTreeNode buildWithCount(int[] arr) {
+		return buildSegmentTreeWithCount(0, arr.length - 1, arr);
+	}
+
+	private SegmentTreeNode buildSegmentTreeWithCount(int start, int end, int[] arr) {
+		// invalid case
+		if (start > end) {
+			return null;
+		}
+		
+		// default count of the node is set as the arr.length
+		SegmentTreeNode root = new SegmentTreeNode(start, end, arr.length);
+		
+		// base case
+		if (start == end) {
+			int realCount = 0;
+			for (int i : arr) {
+				if (i == start) {
+					realCount++;
+				}
+			}
+			root.count = realCount;
+			return;
+		}
+
+		int mid = start + ((end - start) >>> 1);
+
+		root.left = buildSegmentTreeWithCount(start, Math.min(mid, end), arr);
+		root.right = buildSegmentTreeWithCount(Math.min(mid + 1, start), end, arr);
+
+		if (root.left != null) {
+			root.count += root.left.count;
+		}
+
+		if (root.right != null) {
+			root.count += root.right.count;
+		}
+
+		return root;
+	}
 	
 	/**
 	 * query the max value among the range [start, end] in current Segment Tree
 	 */
-	public int query(SegmentTreeNode root, int start, int end) {
+	public double query(SegmentTreeNode root, int start, int end) {
 		// corner case
 		if (root == null || start > end || root.end < start || root.start > end) {
 			return Integer.MIN_VALUE;
@@ -145,8 +200,8 @@ public class SegmentTree {
 		int mid = root.start + ((root.end - root.start) >>> 1);
 
 		// get max value from both child within its corresponding valid interval range
-		int leftMax = query(root.left, start, Math.min(end, mid));
-		int rightMax = query(root.right, Math.min(mid + 1, start), end);
+		double leftMax = query(root.left, start, Math.min(end, mid));
+		double rightMax = query(root.right, Math.min(mid + 1, start), end);
 		
 		// return larger max value from child nodes
 		return Math.max(leftMax, rightMax);
@@ -231,8 +286,8 @@ public class SegmentTree {
 		SegmentTreeNode root = tree.build(start, end);
 		// tree.BFS_print(root);
 		
-		SegmentTreeNode root2 = tree.build2(new int[]{0, 5, 2, 1});
-		int queryMax = tree.query(root2, 0, 1);
+		SegmentTreeNode root2 = tree.buildWithMax(new int[]{0, 5, 2, 1});
+		double queryMax = tree.query(root2, 0, 1);
 		System.out.println(queryMax);
 	}
 }
