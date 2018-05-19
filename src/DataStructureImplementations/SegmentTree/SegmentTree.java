@@ -10,7 +10,7 @@ class SegmentTreeNode {
 	         // represents the corresponding interval
            // max value in the array
 	
-	int count; // represents the element count in this node's range
+	int count; // represents the element count of given array in this node's range
 	
 	public SegmentTreeNode(int start, int end) {
 		this.start = start;
@@ -126,8 +126,8 @@ public class SegmentTree {
 		}
 
 		int mid  = start + ((end - start) >>> 1);
-		root.left = buildSegmentTree(start, mid, arr);
-		root.right = buildSegmentTree(mid + 1, end, arr);
+		root.left = buildSegmentTreeWithMax(start, mid, arr);
+		root.right = buildSegmentTreeWithMax(mid + 1, end, arr);
 
 		// update max for the current node with greater value of left_child_max and right_child_max
 		if (root.left != null) {
@@ -141,6 +141,12 @@ public class SegmentTree {
 		return root;
 	}
 
+	/**
+	 * Third method to build the Segment Tree
+	 * given an array, build the Segment Tree Node with count of elements of array falling into its interval
+	 * @param arr
+	 * @return
+	 */
 	public SegmentTreeNode buildWithCount(int[] arr) {
 		return buildSegmentTreeWithCount(0, arr.length - 1, arr);
 	}
@@ -151,10 +157,11 @@ public class SegmentTree {
 			return null;
 		}
 		
-		// default count of the node is set as the arr.length
-		SegmentTreeNode root = new SegmentTreeNode(start, end, arr.length);
+		// default count of the node is set as 0
+		SegmentTreeNode root = new SegmentTreeNode(start, end, 0);
 		
 		// base case
+		// traverse the array to find the count of elements which equal to the [start == end]
 		if (start == end) {
 			int realCount = 0;
 			for (int i : arr) {
@@ -163,13 +170,13 @@ public class SegmentTree {
 				}
 			}
 			root.count = realCount;
-			return;
+			return root;
 		}
 
 		int mid = start + ((end - start) >>> 1);
 
-		root.left = buildSegmentTreeWithCount(start, Math.min(mid, end), arr);
-		root.right = buildSegmentTreeWithCount(Math.min(mid + 1, start), end, arr);
+		root.left = buildSegmentTreeWithCount(start, mid, arr);
+		root.right = buildSegmentTreeWithCount(mid + 1, end, arr);
 
 		if (root.left != null) {
 			root.count += root.left.count;
@@ -185,10 +192,10 @@ public class SegmentTree {
 	/**
 	 * query the max value among the range [start, end] in current Segment Tree
 	 */
-	public double query(SegmentTreeNode root, int start, int end) {
+	public double queryMax(SegmentTreeNode root, int start, int end) {
 		// corner case
 		if (root == null || start > end || root.end < start || root.start > end) {
-			return Integer.MIN_VALUE;
+			return Double.MIN_VALUE;
 		}
 
 		// base case
@@ -200,8 +207,8 @@ public class SegmentTree {
 		int mid = root.start + ((root.end - root.start) >>> 1);
 
 		// get max value from both child within its corresponding valid interval range
-		double leftMax = query(root.left, start, Math.min(end, mid));
-		double rightMax = query(root.right, Math.min(mid + 1, start), end);
+		double leftMax = queryMax(root.left, start, Math.min(end, mid));
+		double rightMax = queryMax(root.right, Math.max(mid + 1, start), end);
 		
 		// return larger max value from child nodes
 		return Math.max(leftMax, rightMax);
@@ -216,14 +223,15 @@ public class SegmentTree {
 		if (root == null || start > end || root.end < start || root.start > end) {
 			return 0;
 		}
-
-		if (root.start <= start && root.end >= end) {
+		
+		// base case
+		if (root.start >= start && root.end <= end) {
 			return root.count;
 		}
 
 		int mid = root.start + ((root.end - root.start) >>> 1);
 		int leftCount = queryCount(root.left, start, Math.min(mid, end));
-		int rightCount = queryCount(root.right, Math.min(mid + 1, start), end);
+		int rightCount = queryCount(root.right, Math.max(mid + 1, start), end);
 
 		return leftCount + rightCount;
 
@@ -287,7 +295,11 @@ public class SegmentTree {
 		// tree.BFS_print(root);
 		
 		SegmentTreeNode root2 = tree.buildWithMax(new int[]{0, 5, 2, 1});
-		double queryMax = tree.query(root2, 0, 1);
-		System.out.println(queryMax);
+		double queryMax = tree.queryMax(root2, 0, 1);
+		// System.out.println(queryMax);
+		
+		SegmentTreeNode root3 = tree.buildSegmentTreeWithCount(start, end, new int[]{0, 2, 3});
+		int count = tree.queryCount(root3, 1, 1);
+		System.out.println(count);
 	}
 }
