@@ -1,4 +1,4 @@
-package dynamicprogramming.challenging_leetcode;
+package dynamicprogramming.path_finding;
 /**
  * 
  * @author guoyifeng
