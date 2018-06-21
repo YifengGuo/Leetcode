@@ -18,6 +18,20 @@ package dynamicprogramming._1d;
 
  */
 public class ArrayHopper1 {
+	// method 3: greedy algorithm
+	public static boolean canJump3(int[] array) {
+		if (array == null || array.length == 0) {
+			return false;
+		}
+		int reachable = 0; // furtherest position can be reached by previous positions
+		for (int i = 0; i < array.length; i++) {
+			if (i > reachable) {  // current position i cannot be reached by any way from previous positions
+				return false;
+			}
+			reachable = Math.max(reachable, array[i] + i);
+		}
+		return true;
+	}
 	//method 1: dp
 	// 1 3 2 0 3
 	//     i
