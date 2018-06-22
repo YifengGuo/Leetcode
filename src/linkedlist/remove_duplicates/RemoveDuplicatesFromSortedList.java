@@ -1,4 +1,4 @@
-package linkedlist;
+package linkedlist.remove_duplicates;
 /**
  * 
  * @author guoyifeng
