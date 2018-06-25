@@ -1,4 +1,4 @@
-package recursion.tree;
+package recursion.tree.reconstruct_tree;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,7 +80,7 @@ public class ReconstructBinaryTreeWithPostorderAndInorder {
 		}
 		TreeNode root = new TreeNode(post[postRight]); // initialize current layer root via post[]
 		
-		int leftSize = indexMap.get(root.key) - inLeft;  // calculate left subtree element number via root index
+		int leftSize = indexMap.get(root.val) - inLeft;  // calculate left subtree element number via root index
 
 		root.left = helper(in, inLeft, inLeft + leftSize - 1, post, postLeft, postLeft + leftSize - 1, indexMap);
 

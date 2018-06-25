@@ -1,4 +1,4 @@
-package recursion.tree;
+package recursion.tree.reconstruct_tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +78,7 @@ public class ReconstructBinaryTreeWithLevelorderAndInorder {
 		List<Integer> right = new ArrayList<>();
 		// for level order, the order node being added into list matches with the order it is on the tree level
 		for (int i : cur_level) {
-			if (map.get(i) < map.get(root.key)) {
+			if (map.get(i) < map.get(root.val)) {
 				left.add(i);
 			} else {
 				right.add(i);

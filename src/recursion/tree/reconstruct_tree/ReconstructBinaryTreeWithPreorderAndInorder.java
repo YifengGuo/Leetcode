@@ -1,4 +1,4 @@
-package recursion.tree;
+package recursion.tree.reconstruct_tree;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,7 +84,7 @@ public class ReconstructBinaryTreeWithPreorderAndInorder {
 			return null;
 		}
 		TreeNode root = new TreeNode(pre[preLeft]);
-		int leftSize = indexMap.get(root.key) - inLeft;
+		int leftSize = indexMap.get(root.val) - inLeft;
 
 		root.left = helper(in, inLeft, inLeft + leftSize - 1, pre, preLeft + 1, preLeft + leftSize, indexMap);
 		root.right = helper(in, inLeft + leftSize + 1, inRight, pre, preLeft + leftSize + 1, preRight, indexMap);

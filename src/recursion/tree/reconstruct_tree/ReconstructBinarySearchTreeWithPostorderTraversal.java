@@ -1,4 +1,4 @@
-package recursion.tree;
+package recursion.tree.reconstruct_tree;
 
 import java.util.Arrays;
 /**
