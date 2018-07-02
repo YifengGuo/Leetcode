@@ -1,4 +1,4 @@
-package linkedlist;
+package linkedlist.cycle;
 /**
  * 
  * @author yifengguo
