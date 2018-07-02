@@ -12,6 +12,13 @@ package linkedlist;
 	
 	Output: 7 -> 0 -> 8
  */
+class ListNode {
+	ListNode next;
+	int val;
+	ListNode(int val) {
+		this.val = val;
+	}
+}
 public class AddTwoNumbers {
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		if (l1 == null || l2 == null) {
