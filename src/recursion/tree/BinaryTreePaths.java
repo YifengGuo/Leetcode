@@ -24,6 +24,17 @@ import java.util.List;
 	
 	Explanation: All root-to-leaf paths are: 1->2->5, 1->3
  */
+
+class TreeNode {
+	int key;
+	TreeNode left;
+	TreeNode right;
+
+	TreeNode(int x) {
+		key = x;
+	}
+
+}
 public class BinaryTreePaths {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> res = new ArrayList<>();

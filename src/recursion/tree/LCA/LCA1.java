@@ -1,4 +1,4 @@
-package recursion.tree;
+package recursion.tree.LCA;
 /**
  * 
  * @author yifengguo

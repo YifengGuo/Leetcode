@@ -1,5 +1,14 @@
-package recursion.tree;
+package recursion.tree.max_path_sum;
 
+class TreeNode {
+	int key;
+	TreeNode left;
+	TreeNode right;
+
+	TreeNode(int x) {
+		key = x;
+	}
+}
 public class MaximumPathSumBinaryTreeRootToLeaf {
 	public int globalMax = Integer.MIN_VALUE;
 	public int maxPathSum(TreeNode root) {

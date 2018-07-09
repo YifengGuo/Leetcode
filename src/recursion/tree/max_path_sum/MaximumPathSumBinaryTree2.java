@@ -1,4 +1,4 @@
-package recursion.tree;
+package recursion.tree.max_path_sum;
 /**
  * 
  * @author yifengguo
