@@ -1,4 +1,4 @@
-package graph.DepthFirstSearch.leetcode;
+package graph.DepthFirstSearch.leetcode.combination_sum;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -47,9 +47,9 @@ public class CombinationSum3 {
 			return;
 		}
 		for (int j = i; j <= 9; j++) {
-			plan.add(j);
+			plan.add(j); // add it anyway
 			helper(k, j + 1, n - j, plan, res);
-			plan.remove(plan.size() - 1);
+			plan.remove(plan.size() - 1); // backtracking
 		}
 	}
 }
