@@ -1,4 +1,4 @@
-package recursion.tree;
+package recursion.tree.three_step;
 /**
  * 
  * @author yifengguo
