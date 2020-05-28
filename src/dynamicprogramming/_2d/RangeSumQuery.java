@@ -13,7 +13,7 @@ package dynamicprogramming._2d;
  *                3, 2, 1, 4, 5, 3, 2, 6
  *                3  5  6  10 15 18 20 26
  */
-public class QueryPresumGivenTwoIndices {
+public class RangeSumQuery {
 	/*
 	 * improved solution: 1d array to cache prefix_sum
 	 * 	M[i] represents the prefix_sum from index 0 to index i
@@ -62,7 +62,7 @@ public class QueryPresumGivenTwoIndices {
 		int[] array = { 3, 2, 1, 4, 5, 3, 2, 6 };
 		int a = 0;
 		int b = array.length - 1;
-		int sum = new QueryPresumGivenTwoIndices().getSum1(array, a, b);
+		int sum = new RangeSumQuery().getSum1(array, a, b);
 		System.out.println(sum);
 	}
 }
